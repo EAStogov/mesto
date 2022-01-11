@@ -1,0 +1,9 @@
+.elements__card {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  border-radius: 31px 31px 10px 10px;
+  max-width: 282px;
+}

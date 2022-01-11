@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+  </head>
+  <body class="page">
+    <header class="header">
+      <img src="./images/logo.svg" alt="Место — Россия" class="header__logo">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/Avatar.jpg" alt="Аватар профиля" class="profile__avatar">
+        <div class="profile__author">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__description">Исследователь океана</p>
+          <button class="profile__edit-button page__button"></button>
+        </div>
+        <button class="profile__add-button page__button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="elements__card">
+              <img src="./images/Russia.jpg" alt="Россия" class="elements__image">
+              <h2 class="elements__place">Россия</h2>
+              <button class="elements__like"></button>
+          </li>
+          <li class="elements__card">
+              <img src="./images/Croatia.jpg" alt="Хорватия" class="elements__image">
+              <h2 class="elements__place">Хорватия</h2>
+              <button class="elements__like"></button>
+          </li>
+          <li class="elements__card">
+              <img src="./images/Germany.jpg" alt="Германия" class="elements__image">
+              <h2 class="elements__place">Германия</h2>
+              <button class="elements__like"></button>
+          </li>
+          <li class="elements__card">
+              <img src="./images/Turkey.jpg" alt="Турция" class="elements__image">
+              <h2 class="elements__place">Турция</h2>
+              <button class="elements__like"></button>
+          </li>
+          <li class="elements__card">
+              <img src="./images/Vietnam.jpg" alt="Вьетнам" class="elements__image">
+              <h2 class="elements__place">Вьетнам</h2>
+              <button class="elements__like"></button>
+          </li>
+          <li class="elements__card">
+              <img src="./images/Japan.jpg" alt="Япония" class="elements__image">
+              <h2 class="elements__place">Япония</h2>
+              <button class="elements__like"></button>
+          </li>
+        </ul>
+        
+      </section>
+    </main>
+    <footer class="footer">
+      <h2 class="footer__text">© 2020 Mesto Russia</h2>
+    </footer>
+    <section class="popup">
+      <div class="popup__container">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <input type="text" class="popup__input popup__name">
+        <input type="text" class="popup__input popup__description">
+        <button type="submit" class="popup__submit page__button">Сохранить</button>
+        <button class="popup__close page__button"></button>
+      </div>
+    </section>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>

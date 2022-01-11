@@ -1,0 +1,13 @@
+.popup__submit {
+  max-width: 358px;
+  height: 50px;
+  color: white;
+  background-color: black;
+  border: none;
+  cursor: pointer;
+  transition: opacity .2s ease-in-out;
+}
+
+.popup__submit:hover {
+  opacity: .8;
+}

@@ -1,0 +1,18 @@
+.profile__author {
+  display: flex;
+  flex-direction: column;
+  margin-right: 60px;
+  max-width: 580px;
+  min-width: 1px;
+  justify-content: center;
+  position: relative;
+}
+
+@media screen and (max-width: 648px) {
+  .profile__author {
+    margin-right: 47px;
+    align-items: center;
+    left: 28px;
+    max-width: calc(100vw - 122px);
+  }
+}
