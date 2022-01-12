@@ -4,3 +4,13 @@
   font-size: 14px;
   font-weight: 400px;
 }
+
+.popup__input:last-of-type {
+  margin: 30px 0 48px;
+}
+
+@media screen and (max-width: 417px) {
+  .popup__input:last-of-type {
+    margin-bottom: 45px;
+  }
+}

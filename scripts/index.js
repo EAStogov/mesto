@@ -4,14 +4,23 @@ let popupClose = document.querySelector('.popup__close');
 let popup = document.querySelector('.popup');
 let profileName = document.querySelector('.profile__name');
 let profileDesc = document.querySelector('.profile__description')
-let inputName = document.querySelector('.popup__name');
-let inputDesc = document.querySelector('.popup__description');
+let inputs = document.querySelectorAll('.popup__input');
+let inputName;
+let inputDesc;
 
-inputName.value = profileName.textContent;
-inputDesc.value = profileDesc.textContent;
+inputs.forEach(element => {
+  if (element.getAttribute('name') === 'name') {
+    inputName = element;
+  } else if (element.getAttribute('name') === 'description') {
+    inputDesc = element;
+  }
+})
+
 
 function openPopup() {
   popup.classList.add('popup__opened');
+  inputName.value = profileName.textContent;
+  inputDesc.value = profileDesc.textContent;
 }
 
 function closePopup() {
@@ -19,8 +28,8 @@ function closePopup() {
 }
 
 function submitChanges() {
-  profileName.textContent = document.querySelector('.popup__name').value;
-  profileDesc.textContent = document.querySelector('.popup__description').value;
+  profileName.textContent = inputName.value;
+  profileDesc.textContent = inputDesc.value;
 }
 
 edit.addEventListener('click', openPopup);
