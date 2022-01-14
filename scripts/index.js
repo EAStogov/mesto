@@ -18,13 +18,13 @@ inputs.forEach(element => {
 
 
 function openPopup() {
-  popup.classList.add('popup__opened');
+  popup.classList.add('popup_opened');
   inputName.value = profileName.textContent;
   inputDesc.value = profileDesc.textContent;
 }
 
 function closePopup() {
-  popup.classList.remove('popup__opened');
+  popup.classList.remove('popup_opened');
 }
 
 function submitChanges() {
