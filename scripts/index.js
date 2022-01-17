@@ -1,9 +1,9 @@
 let edit = document.querySelector('.profile__edit-button');
-let submit = document.querySelector('.popup__submit');
 let popupClose = document.querySelector('.popup__close');
 let popup = document.querySelector('.popup');
 let profileName = document.querySelector('.profile__name');
 let profileDesc = document.querySelector('.profile__description')
+let form = document.querySelector('.popup__form');
 let inputs = document.querySelectorAll('.popup__input');
 let inputName;
 let inputDesc;
@@ -16,7 +16,6 @@ inputs.forEach(element => {
   }
 })
 
-
 function openPopup() {
   popup.classList.add('popup_opened');
   inputName.value = profileName.textContent;
@@ -27,16 +26,20 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 }
 
-function submitChanges() {
+function submitChanges(event) {
+  event.preventDefault();
   profileName.textContent = inputName.value;
   profileDesc.textContent = inputDesc.value;
+  closePopup();
 }
 
 edit.addEventListener('click', openPopup);
 
 popupClose.addEventListener('click', closePopup);
 
-popup.addEventListener('click', function(event) {
+form.addEventListener('submit', submitChanges);
+
+popup.addEventListener('mousedown', function(event) {
   if (event.path[0] === document.querySelector('.popup')) {
     closePopup();
   }
@@ -50,12 +53,6 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keydown', function(event) {
   if (event.code === 'Enter') {
-    submitChanges();
-    closePopup();
+    submitChanges;
   }
-})
-
-submit.addEventListener('click', function() {
-  submitChanges();
-  closePopup();
 })
