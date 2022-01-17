@@ -19,17 +19,10 @@
   }
 }
 
-@media screen and (max-width: 648px) {
+@media screen and (max-width: 695px) {
   .profile {
-    flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
-    margin: 42px 19px 0;
-  }
-}
-
-@media screen and (max-width: 533px) {
-  .profile {
+    justify-content: center;
     margin: 42px 19px 0;
   }
 }
