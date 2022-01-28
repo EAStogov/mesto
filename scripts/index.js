@@ -12,6 +12,45 @@ let inputDesc;
 
 let buttonOnPage = document.querySelectorAll('.page__button');
 let popupActive = popups[1];
+const initialCards = [
+  {
+    name: 'Россия',
+    link: './images/Russia.jpg'
+  },
+  {
+    name: 'Хорватия',
+    link: './images/Croatia.jpg'
+  },
+  {
+    name: 'Германия',
+    link: './images/Germany.jpg'
+  },
+  {
+    name: 'Турция',
+    link: './images/Turkey.jpg'
+  },
+  {
+    name: 'Вьетнам',
+    link: './images/Vietnam.jpg'
+  },
+  {
+    name: 'Япония',
+    link: './images/Japan.jpg'
+  }
+];
+
+function addCard(place, link) {
+  const templateCard = document.querySelector('#card-template').content;
+  const elementsList = document.querySelector('.elements__list');
+  const newCard = templateCard.querySelector('.elements__card').cloneNode(true);
+
+  newCard.querySelector('.elements__place').textContent = place;
+  newCard.querySelector('.elements__image').setAttribute('src', link);
+
+  elementsList.append(newCard);
+};
+
+initialCards.forEach(card => {addCard(card.name, card.link)});
 
 inputs.forEach(element => {
   if (element.getAttribute('name') === 'name') {
@@ -50,7 +89,7 @@ function submitChanges(evt) {
     profileName.textContent = inputName.value;
     profileDesc.textContent = inputDesc.value;
   } else {
-    
+
   }
   
   closePopup(evt.target.getAttribute('id'));
