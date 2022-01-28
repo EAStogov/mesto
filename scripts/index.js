@@ -8,6 +8,46 @@ let inputs = document.querySelectorAll('.popup__input');
 let inputName;
 let inputDesc;
 
+const initialCards = [
+  {
+    name: 'Россия',
+    link: './images/Russia.jpg'
+  },
+  {
+    name: 'Хорватия',
+    link: './images/Croatia.jpg'
+  },
+  {
+    name: 'Германия',
+    link: './images/Germany.jpg'
+  },
+  {
+    name: 'Турция',
+    link: './images/Turkey.jpg'
+  },
+  {
+    name: 'Вьетнам',
+    link: './images/Vietnam.jpg'
+  },
+  {
+    name: 'Япония',
+    link: './images/Japan.jpg'
+  }
+];
+
+function addCard(place, link) {
+  const templateCard = document.querySelector('#card-template').content;
+  const elementsList = document.querySelector('.elements__list');
+  const newCard = templateCard.querySelector('.elements__card').cloneNode(true);
+
+  newCard.querySelector('.elements__place').textContent = place;
+  newCard.querySelector('.elements__image').setAttribute('src', link);
+
+  elementsList.append(newCard);
+};
+
+initialCards.forEach(card => {addCard(card.name, card.link)});
+
 inputs.forEach(element => {
   if (element.getAttribute('name') === 'name') {
     inputName = element;
