@@ -1,15 +1,15 @@
-let popups = document.querySelectorAll('.popup');
-let profileButtons = document.querySelector('.profile').querySelectorAll('button');
-let profileName = document.querySelector('.profile__name');
-let profileDesc = document.querySelector('.profile__description')
-let forms = document.querySelectorAll('.popup__form');
-let inputs = document.querySelectorAll('.popup__input');
+const popups = document.querySelectorAll('.popup');
+const profileButtons = document.querySelector('.profile').querySelectorAll('button');
+const profileName = document.querySelector('.profile__name');
+const profileDesc = document.querySelector('.profile__description')
+const forms = document.querySelectorAll('.popup__form');
+const inputs = document.querySelectorAll('.popup__input');
 let inputName;
 let inputDesc;
 let inputPlace;
 let inputLink;
-let popupImage = document.querySelector('.popup__image');
-let popupDesc = document.querySelector('#image-description');
+const popupImage = document.querySelector('.popup__image');
+const popupDesc = document.querySelector('#image-description');
 
 const initialCards = [
   {
