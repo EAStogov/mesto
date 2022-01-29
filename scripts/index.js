@@ -5,13 +5,15 @@ let popups = document.querySelectorAll('.popup');
 let profileButtons = document.querySelector('.profile').querySelectorAll('button');
 let profileName = document.querySelector('.profile__name');
 let profileDesc = document.querySelector('.profile__description')
-let form = document.querySelector('.popup__form');
+let forms = document.querySelectorAll('.popup__form');
 let inputs = document.querySelectorAll('.popup__input');
 let inputName;
 let inputDesc;
+let inputPlace;
+let inputLink;
 
 let buttonOnPage = document.querySelectorAll('.page__button');
-let popupActive = popups[1];
+let popupActive;
 const initialCards = [
   {
     name: 'Россия',
@@ -39,7 +41,7 @@ const initialCards = [
   }
 ];
 
-function addCard(place, link) {
+function addCard(place, link, isAppend) {
   const templateCard = document.querySelector('#card-template').content;
   const elementsList = document.querySelector('.elements__list');
   const newCard = templateCard.querySelector('.elements__card').cloneNode(true);
@@ -47,16 +49,24 @@ function addCard(place, link) {
   newCard.querySelector('.elements__place').textContent = place;
   newCard.querySelector('.elements__image').setAttribute('src', link);
 
-  elementsList.append(newCard);
+  if (isAppend) {
+    elementsList.append(newCard);
+  } else {
+    elementsList.prepend(newCard);
+  }
 };
 
-initialCards.forEach(card => {addCard(card.name, card.link)});
+initialCards.forEach(card => {addCard(card.name, card.link, true)});
 
 inputs.forEach(element => {
   if (element.getAttribute('name') === 'name') {
     inputName = element;
   } else if (element.getAttribute('name') === 'description') {
     inputDesc = element;
+  } else if (element.getAttribute('name') === 'place') {
+    inputPlace = element;
+  } else if (element.getAttribute('name') === 'link') {
+    inputLink = element;
   }
 })
 
@@ -65,56 +75,55 @@ function findPopupById(id) {
   popups.forEach(popup => {
     if (popup.getAttribute('id') === id) {
       findedPopup = popup;
-      return findedPopup;
     }
   })
   return findedPopup;
 }
 
 function openPopup(id) {
-  popupActive = findPopupById(id);
-  popupActive.classList.add('popup_opened');
-  inputName.value = profileName.textContent;
-  inputDesc.value = profileDesc.textContent;
-  console.log(popupActive);
+  findPopupById(id).classList.add('popup_opened');
+  if (id === 'edit') {
+    inputName.value = profileName.textContent;
+    inputDesc.value = profileDesc.textContent;
+  }
 }
 
-function closePopup(id) {
-  popupActive.classList.remove('popup_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 
-function submitChanges(evt) {
-  evt.preventDefault();
-  if (evt.target.getAttribute('id') === 'edit') {
+function submitChanges(event) {
+  event.preventDefault();
+  const popup = event.target.closest('.popup');
+  if (event.target.getAttribute('name') === 'popup__form-edit') {
     profileName.textContent = inputName.value;
     profileDesc.textContent = inputDesc.value;
   } else {
-
+    addCard(inputPlace.value, inputLink.value, false);
   }
-  
-  closePopup(evt.target.getAttribute('id'));
+  closePopup(popup);
 }
 
 profileButtons.forEach(button => {
-  console.log(button);
   button.addEventListener('click', (evt) => {openPopup(evt.target.getAttribute('id'))});
 });
 
 popups.forEach(popup => {
-  popup.querySelector('.popup__close').addEventListener('click', closePopup);
+  popup.querySelector('.popup__close').addEventListener('click', (evt) => {closePopup(popup)});
+  popup.addEventListener('mousedown', (event) => {
+    if(event.path[0] === popup) {
+      closePopup(popup);
+    }
+  })
 })
 
-form.addEventListener('submit', submitChanges);
-
-// popups.addEventListener('mousedown', function(event) {
-//   if (event.path[0] === popupActive) {
-//     closePopup();
-//   }
-// });
+forms.forEach(form => {
+  form.addEventListener('submit', submitChanges);
+})
 
 document.addEventListener('keydown', function(event) {
   if (event.code === 'Escape') {
-    closePopup();
+    closePopup(document.querySelector('.popup_opened'));
   }
 })
 
