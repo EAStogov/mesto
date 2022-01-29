@@ -49,7 +49,9 @@ function addCard(place, link, isAppend) {
   } else {
     elementsList.prepend(newCard);
   }
-};
+  
+  newCard.querySelector('.elements__trash').addEventListener('click', (evt) => {newCard.remove()});
+}
 
 initialCards.forEach(card => {addCard(card.name, card.link, true)});
 
