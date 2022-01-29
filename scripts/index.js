@@ -91,10 +91,14 @@ function findPopupById(id) {
 }
 
 function openPopup(id) {
-  findPopupById(id).classList.add('popup_opened');
   if (id === 'edit') {
+    findPopupById('edit-popup').classList.add('popup_opened');
     inputName.value = profileName.textContent;
     inputDesc.value = profileDesc.textContent;
+  } else if (id === 'add') {
+    findPopupById('add-popup').classList.add('popup_opened');
+  } else {
+    findPopupById('image-popup').classList.add('popup_opened');
   }
 }
 
