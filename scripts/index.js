@@ -8,6 +8,8 @@ let inputName;
 let inputDesc;
 let inputPlace;
 let inputLink;
+let popupImage = document.querySelector('.popup__image');
+let popupDesc = document.querySelector('#image-description');
 
 const initialCards = [
   {
@@ -40,9 +42,11 @@ function addCard(place, link, isAppend) {
   const templateCard = document.querySelector('#card-template').content;
   const elementsList = document.querySelector('.elements__list');
   const newCard = templateCard.querySelector('.elements__card').cloneNode(true);
-
+  const cardImage = newCard.querySelector('.elements__image');
+  
   newCard.querySelector('.elements__place').textContent = place;
-  newCard.querySelector('.elements__image').setAttribute('src', link);
+  cardImage.setAttribute('src', link);
+  cardImage.setAttribute('alt', place);
 
   if (isAppend) {
     elementsList.append(newCard);
@@ -54,6 +58,12 @@ function addCard(place, link, isAppend) {
   newCard.querySelector('.elements__like').addEventListener('click', (evt) => {
     evt.target.classList.toggle('elements__like_active');
   });
+  newCard.querySelector('.elements__image').addEventListener('click', (evt) => {
+    openPopup('image');
+    popupImage.setAttribute('src', link);
+    popupImage.setAttribute('alt', place);
+    popupDesc.textContent = place;
+  })
 }
 
 initialCards.forEach(card => {addCard(card.name, card.link, true)});
