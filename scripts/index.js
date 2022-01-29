@@ -51,6 +51,9 @@ function addCard(place, link, isAppend) {
   }
   
   newCard.querySelector('.elements__trash').addEventListener('click', (evt) => {newCard.remove()});
+  newCard.querySelector('.elements__like').addEventListener('click', (evt) => {
+    evt.target.classList.toggle('elements__like_active');
+  });
 }
 
 initialCards.forEach(card => {addCard(card.name, card.link, true)});
