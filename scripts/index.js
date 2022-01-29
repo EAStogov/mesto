@@ -1,6 +1,3 @@
-let edit = document.querySelector('.profile__edit-button');
-let add = document.querySelector('.profile__add-button');
-let popupClose = document.querySelector('.popup__close');
 let popups = document.querySelectorAll('.popup');
 let profileButtons = document.querySelector('.profile').querySelectorAll('button');
 let profileName = document.querySelector('.profile__name');
@@ -12,8 +9,6 @@ let inputDesc;
 let inputPlace;
 let inputLink;
 
-let buttonOnPage = document.querySelectorAll('.page__button');
-let popupActive;
 const initialCards = [
   {
     name: 'Россия',
