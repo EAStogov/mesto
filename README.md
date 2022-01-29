@@ -10,6 +10,7 @@
 * flex-box;
 * grid-layout;
 * JS;
+* Template-элементы
 * Figma
 
 #### Все фотографии взяты с реусурса бесплатных фотографий https://unsplash.com
