@@ -5,12 +5,14 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileDesc = document.querySelector('.profile__description')
-const editForm = document.querySelector('[name="popup__form-edit"]');
-const addForm = document.querySelector('[name="popup__form-add"]');
-let inputName = document.querySelector('[name="name"]');
-let inputDesc = document.querySelector('[name="description"]');
-let inputPlace = document.querySelector('[name="place"]');
-let inputLink = document.querySelector('[name="link"]');
+
+const editForm = document.querySelector('.popup__form_fill_edit');
+const addForm = document.querySelector('.popup__form_fill_add');
+
+const inputName = document.querySelector('.popup__input_value_name');
+const inputDesc = document.querySelector('.popup__input_value_description');
+const inputPlace = document.querySelector('.popup__input_value_place');
+const inputLink = document.querySelector('.popup__input_value_link');
 const popupImage = document.querySelector('.popup__image');
 const popupDesc = document.querySelector('#image-description');
 const elementsList = document.querySelector('.elements__list');
