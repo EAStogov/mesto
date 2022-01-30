@@ -25,14 +25,6 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <template id="card-template">
-            <li class="elements__card">
-              <img src="#" alt="#" class="elements__image">
-              <h2 class="elements__place"></h2>
-              <button type="button" aria-label class="elements__trash"></button>
-              <button type="button" aria-label class="elements__like"></button>
-            </li>
-          </template>
         </ul>
       </section>
     </main>
@@ -70,6 +62,14 @@
         <button aria-label type="button" class="popup__close page__button"></button>
       </div>
     </section>
+    <template id="card-template">
+      <li class="elements__card">
+        <img src="#" alt="#" class="elements__image">
+        <h2 class="elements__place"></h2>
+        <button type="button" aria-label class="elements__trash"></button>
+        <button type="button" aria-label class="elements__like"></button>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
