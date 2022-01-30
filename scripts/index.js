@@ -5,10 +5,8 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__name');
 const profileDesc = document.querySelector('.profile__description')
-
 const editForm = document.querySelector('.popup__form_fill_edit');
 const addForm = document.querySelector('.popup__form_fill_add');
-
 const inputName = document.querySelector('.popup__input_value_name');
 const inputDesc = document.querySelector('.popup__input_value_description');
 const inputPlace = document.querySelector('.popup__input_value_place');
