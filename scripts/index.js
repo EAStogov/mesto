@@ -50,10 +50,6 @@ initialCards.forEach(card => {addCard(createCard(card.name, card.link), true)});
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  if (popup === editPopup) {
-    inputName.value = profileName.textContent;
-    inputDesc.value = profileDesc.textContent;
-  }
 }
 
 function closePopup(popup) {
@@ -75,7 +71,11 @@ function handleCardFormSubmit(evt) {
   closePopup(addPopup);
 }
 
-editProfileButton.addEventListener('click', (evt) => {openPopup(editPopup)});
+editProfileButton.addEventListener('click', (evt) => {
+  openPopup(editPopup);
+  inputName.value = profileName.textContent;
+  inputDesc.value = profileDesc.textContent;
+});
 addCardButton.addEventListener('click', (evt) => {openPopup(addPopup)});
 
 editPopup.querySelector('.popup__close').addEventListener('click', (evt) => {closePopup(editPopup)});
