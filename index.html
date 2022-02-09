@@ -34,9 +34,11 @@
     <section id="edit-popup" class="popup">
       <div class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <form action="url" name="popup__form-edit" class="popup__form popup__form_fill_edit">
+        <form action="url" name="popup__form-edit" class="popup__form popup__form_fill_edit" novalidate>
           <input type="text" name="name" class="popup__input popup__input_value_name">
+          <span class="popup__input-error popup__input-error_type_name"></span>
           <input type="text" name="description" class="popup__input popup__input_value_description">
+          <span class="popup__input-error popup__input-error_type_description"></span>
           <button type="submit" class="popup__submit page__button">Сохранить</button>
         </form>
         <button aria-label type="button" class="popup__close page__button"></button>
@@ -45,9 +47,11 @@
     <section id="add-popup" class="popup">
       <div class="popup__container">
         <h2 class="popup__heading">Новое место</h2>
-        <form action="url" name="popup__form-add" class="popup__form popup__form_fill_add">
+        <form action="url" name="popup__form-add" class="popup__form popup__form_fill_add" novalidate>
           <input type="text" placeholder="Название" name="place" class="popup__input popup__input_value_place">
+          <span class="popup__input-error popup__input-error_type_place"></span>
           <input type="text" placeholder="Ссылка на картинку" name="link" class="popup__input popup__input_value_link">
+          <span class="popup__input-error popup__input-error_type_link">Error.</span>
           <button type="submit" class="popup__submit page__button">Создать</button>
         </form>
         <button aria-label type="button" class="popup__close page__button"></button>
@@ -72,5 +76,6 @@
     </template>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
