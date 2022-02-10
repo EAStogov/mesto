@@ -15,4 +15,5 @@
 
 .popup__submit:disabled {
   opacity: .2;
+  cursor: default;
 }
