@@ -58,10 +58,6 @@ function enableValidation(obj) {
       evt.preventDefault();
     });
   });
-  // const inputs = Array.from(document.querySelectorAll(obj.inputSelector));
-  // inputs.forEach(input => {
-  //   setEventListeners(input);
-  // })
 }
 
 enableValidation({
