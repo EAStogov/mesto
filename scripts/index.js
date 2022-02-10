@@ -15,6 +15,8 @@ const popupImage = document.querySelector('.popup__image');
 const popupDesc = document.querySelector('#image-description');
 const elementsList = document.querySelector('.elements__list');
 
+let openedPopup;
+
 inputName.value = profileName.textContent;
 inputDesc.value = profileDesc.textContent;
 
@@ -53,6 +55,7 @@ initialCards.forEach(card => {addCard(createCard(card.name, card.link), true)});
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  openedPopup = popup;
 }
 
 function closePopup(popup) {
@@ -100,6 +103,12 @@ addPopup.addEventListener('mousedown', (evt) => {
 imagePopup.addEventListener('mousedown', (evt) => {
   if (evt.target === imagePopup) {
     closePopup(imagePopup);
+  }
+})
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(openedPopup);
   }
 })
 
