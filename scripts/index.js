@@ -85,5 +85,23 @@ editPopup.querySelector('.popup__close').addEventListener('click', () => {closeP
 addPopup.querySelector('.popup__close').addEventListener('click', () => {closePopup(addPopup)});
 imagePopup.querySelector('.popup__close').addEventListener('click', () => {closePopup(imagePopup)});
 
+editPopup.addEventListener('mousedown', (evt) => {
+  if (evt.target === editPopup) {
+    closePopup(editPopup);
+  }
+})
+
+addPopup.addEventListener('mousedown', (evt) => {
+  if (evt.target === addPopup) {
+    closePopup(addPopup);
+  }
+})
+
+imagePopup.addEventListener('mousedown', (evt) => {
+  if (evt.target === imagePopup) {
+    closePopup(imagePopup);
+  }
+})
+
 editForm.addEventListener('submit', handleProfileFormSubmit);
 addForm.addEventListener('submit', handleCardFormSubmit);
