@@ -1,5 +1,6 @@
 const editPopup = document.querySelector('#edit-popup');
 const addPopup = document.querySelector('#add-popup');
+const submitButtonAddPopup = addPopup.querySelector('.popup__submit');
 const imagePopup = document.querySelector('#image-popup');
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
@@ -72,6 +73,8 @@ function handleCardFormSubmit(evt) {
   addCard(createCard(inputPlace.value, inputLink.value), false);
   inputPlace.value = '';
   inputLink.value = '';
+  submitButtonAddPopup.setAttribute('disabled', 'disabled');
+  submitButtonAddPopup.classList.add('popup__submit_disabled');
   closePopup(addPopup);
 }
 
