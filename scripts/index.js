@@ -56,6 +56,7 @@ initialCards.forEach(card => {addCard(createCard(card.name, card.link), true)});
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   openedPopup = popup;
+  document.addEventListener('keydown', closePopupWithEsc);
 }
 
 function closePopup(popup) {
@@ -75,6 +76,14 @@ function handleCardFormSubmit(evt) {
   inputPlace.value = '';
   inputLink.value = '';
   closePopup(addPopup);
+}
+
+function closePopupWithEsc(evt) {
+  console.log('evt.key');
+  if (evt.key === 'Escape') {
+    closePopup(openedPopup);
+    document.removeEventListener('keydown', closePopupWithEsc);
+  }
 }
 
 editProfileButton.addEventListener('click', () => {
@@ -106,11 +115,7 @@ imagePopup.addEventListener('mousedown', (evt) => {
   }
 })
 
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    closePopup(openedPopup);
-  }
-})
+document.addEventListener('keydown', closePopupWithEsc);
 
 editForm.addEventListener('submit', handleProfileFormSubmit);
 addForm.addEventListener('submit', handleCardFormSubmit);
