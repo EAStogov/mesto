@@ -1,3 +1,4 @@
+const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('#edit-popup');
 const addPopup = document.querySelector('#add-popup');
 const submitButtonAddPopup = addPopup.querySelector('.popup__submit');
@@ -86,14 +87,16 @@ function closePopupWithEsc(evt) {
   }
 }
 
-function setEventListenersToPopup(popup) {
-  popup.querySelector('.popup__close').addEventListener('click', () => {closePopup(popup)});
+popups.forEach(popup => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target === popup) {
       closePopup(popup);
     }
-  });
-}
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  })
+})
 
 editProfileButton.addEventListener('click', () => {
   openPopup(editPopup);
@@ -101,10 +104,6 @@ editProfileButton.addEventListener('click', () => {
   inputDesc.value = profileDesc.textContent;
 });
 addCardButton.addEventListener('click', () => {openPopup(addPopup)});
-
-setEventListenersToPopup(editPopup);
-setEventListenersToPopup(addPopup);
-setEventListenersToPopup(imagePopup);
 
 editForm.addEventListener('submit', handleProfileFormSubmit);
 addForm.addEventListener('submit', handleCardFormSubmit);
