@@ -59,6 +59,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupWithEsc);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -82,7 +83,6 @@ function closePopupWithEsc(evt) {
   console.log('evt.key');
   if (evt.key === 'Escape') {
     closePopup(openedPopup);
-    document.removeEventListener('keydown', closePopupWithEsc);
   }
 }
 
