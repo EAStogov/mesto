@@ -5,7 +5,6 @@ function setEventListeners(form, inputSelector, submitButton, inactiveButtonClas
   toggleButtonState(inputs, formButton, inactiveButtonClass);
 
   inputs.forEach(input => {
-    checkInputValidity(form, input, inputErrorClass, ErrorClass);
     input.addEventListener('input', () => {
       checkInputValidity(form, input, inputErrorClass, ErrorClass);
       toggleButtonState(inputs, formButton, inactiveButtonClass);

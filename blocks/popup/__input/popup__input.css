@@ -13,10 +13,6 @@
 
 @media screen and (max-width: 417px) {
   .popup__input:last-of-type {
-    margin-bottom: 14px;
+    margin-bottom: 45px;
   }
-}
-
-.popup__input:invalid {
-  margin-bottom: 0;
 }
