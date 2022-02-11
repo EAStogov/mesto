@@ -1,12 +1,13 @@
-function setEventListeners(form, inputSelector, submitButton, inactiveButtonClass) {
+function setEventListeners(form, inputSelector, submitButton, inactiveButtonClass, inputErrorClass, ErrorClass) {
   const inputs = Array.from(form.querySelectorAll(inputSelector));
   const formButton = form.querySelector(submitButton);
 
   toggleButtonState(inputs, formButton, inactiveButtonClass);
 
   inputs.forEach(input => {
+    checkInputValidity(form, input, inputErrorClass, ErrorClass);
     input.addEventListener('input', () => {
-      checkInputValidity(form, input);
+      checkInputValidity(form, input, inputErrorClass, ErrorClass);
       toggleButtonState(inputs, formButton, inactiveButtonClass);
     })
   });
@@ -21,14 +22,14 @@ function checkInputValidity(form, input, inputErrorClass, errorClass) {
 }
 
 function showInputError(form, input, errorMessage, inputErrorClass, errorClass) {
-  const errorElement = form.querySelector(`.popup__input-error_type_${input.name}`);
+  const errorElement = form.querySelector(`.popup__error_type_${input.name}`);
   input.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(errorClass);
 }
 
 function removeInputError(form, input, inputErrorClass, errorClass) {
-  const errorElement = form.querySelector(`.popup__input-error_type_${input.name}`);
+  const errorElement = form.querySelector(`.popup__error_type_${input.name}`);
   input.classList.remove(inputErrorClass);
   errorElement.textContent = '';
   errorElement.classList.remove(errorClass);
@@ -53,7 +54,7 @@ function containsInvalidInput(inputs) {
 function enableValidation(obj) {
   const forms = Array.from(document.querySelectorAll(obj.formSelector));
   forms.forEach(form => {
-    setEventListeners(form, obj.inputSelector, obj.submitButtonSelector, obj.inactiveButtonClass);
+    setEventListeners(form, obj.inputSelector, obj.submitButtonSelector, obj.inactiveButtonClass, obj.inputErrorClass, obj.errorClass);
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });

@@ -8,11 +8,15 @@
 }
 
 .popup__input:last-of-type {
-  margin-bottom: 17px;
+  margin-bottom: 48px;
 }
 
 @media screen and (max-width: 417px) {
   .popup__input:last-of-type {
     margin-bottom: 14px;
   }
+}
+
+.popup__input:invalid {
+  margin-bottom: 0;
 }
