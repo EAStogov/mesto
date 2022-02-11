@@ -17,9 +17,6 @@ const elementsList = document.querySelector('.elements__list');
 
 let openedPopup;
 
-inputName.value = profileName.textContent;
-inputDesc.value = profileDesc.textContent;
-
 function createCard(place, link) {
   const templateCard = document.querySelector('#card-template').content;
   const newCard = templateCard.querySelector('.elements__card').cloneNode(true);
