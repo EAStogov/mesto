@@ -10,6 +10,7 @@
 * flex-box;
 * grid-layout;
 * JS;
+* ООП;
 * Template-элементы
 * Figma
 
