@@ -9,34 +9,30 @@ class Card {
   }
 
   _createCard() {
-    const newCard = this._getTemplate();
-    const cardImage = newCard.querySelector('.elements__image');
+    this._getTemplate();
+    const cardImage = this.cardElement.querySelector('.elements__image');
     
-    newCard.querySelector('.elements__place').textContent = this.place;
+    this.cardElement.querySelector('.elements__place').textContent = this.place;
     cardImage.setAttribute('src', this.link);
     cardImage.setAttribute('alt', this.place);
     
-    this._setEventListeners(newCard);
-
-    return newCard;
+    this._setEventListeners();
   }
 
   _getTemplate() {
-    const cardElement = document
+    this.cardElement = document
       .querySelector('#card-template')
       .content
       .querySelector(this.cardSelector)
       .cloneNode(true);
-
-    return cardElement;
   }
 
-  _setEventListeners(obj) {
-    obj.querySelector('.elements__trash').addEventListener('click', () => {obj.remove()});
-    obj.querySelector('.elements__like').addEventListener('click', (evt) => {
+  _setEventListeners() {
+    this.cardElement.querySelector('.elements__trash').addEventListener('click', () => {this.cardElement.remove()});
+    this.cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
       evt.target.classList.toggle('elements__like_active');
     });
-    obj.querySelector('.elements__image').addEventListener('click', () => {
+    this.cardElement.querySelector('.elements__image').addEventListener('click', () => {
       openPopup(imagePopup);
       popupImage.setAttribute('src', this.link);
       popupImage.setAttribute('alt', this.place);
@@ -45,10 +41,11 @@ class Card {
   }
 
   addCard(isAppend) {
+    this._createCard();
     if (isAppend) {
-      elementsList.append(this._createCard());
+      elementsList.append(this.cardElement);
     } else {
-      elementsList.prepend(this._createCard());
+      elementsList.prepend(this.cardElement);
     }
   }
 }
