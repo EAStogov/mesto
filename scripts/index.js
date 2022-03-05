@@ -95,10 +95,7 @@ function closePopupWithEsc(evt) {
 
 popups.forEach(popup => {
   popup.addEventListener('mousedown', (evt) => {
-    if (evt.target === popup) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__close')) {
+    if ((evt.target === popup) || evt.target.classList.contains('popup__close')) {
       closePopup(popup);
     }
   })
