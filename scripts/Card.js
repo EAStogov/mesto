@@ -1,5 +1,5 @@
 import {openPopup, imagePopup, popupImage, popupDesc} from './index.js';
-const elementsList = document.querySelector('.elements__list');
+
 class Card {
 
   constructor(data, cardSelector) {
@@ -28,7 +28,7 @@ class Card {
   }
 
   _setEventListeners() {
-    this.cardElement.querySelector('.elements__trash').addEventListener('click', () => {this.cardElement.remove()});
+    this.cardElement.querySelector('.elements__trash').addEventListener('click', () => this.cardElement.remove());
     this.cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
       evt.target.classList.toggle('elements__like_active');
     });
@@ -39,43 +39,6 @@ class Card {
       popupDesc.textContent = this.place;
     })
   }
-
-  addCard(isAppend) {
-    this._createCard();
-    if (isAppend) {
-      elementsList.append(this.cardElement);
-    } else {
-      elementsList.prepend(this.cardElement);
-    }
-  }
 }
 
-const initialCards = [
-  {
-    name: 'Россия',
-    link: './images/Russia.jpg'
-  },
-  {
-    name: 'Хорватия',
-    link: './images/Croatia.jpg'
-  },
-  {
-    name: 'Германия',
-    link: './images/Germany.jpg'
-  },
-  {
-    name: 'Турция',
-    link: './images/Turkey.jpg'
-  },
-  {
-    name: 'Вьетнам',
-    link: './images/Vietnam.jpg'
-  },
-  {
-    name: 'Япония',
-    link: './images/Japan.jpg'
-  }
-];
-
-
-export {Card, initialCards};
+export { Card };

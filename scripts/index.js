@@ -1,6 +1,34 @@
-import { Card, initialCards } from "./Card.js";
+import { Card } from "./Card.js";
 import { FormValidator, args } from "./FormValidator.js";
 
+const initialCards = [
+  {
+    name: 'Россия',
+    link: './images/Russia.jpg'
+  },
+  {
+    name: 'Хорватия',
+    link: './images/Croatia.jpg'
+  },
+  {
+    name: 'Германия',
+    link: './images/Germany.jpg'
+  },
+  {
+    name: 'Турция',
+    link: './images/Turkey.jpg'
+  },
+  {
+    name: 'Вьетнам',
+    link: './images/Vietnam.jpg'
+  },
+  {
+    name: 'Япония',
+    link: './images/Japan.jpg'
+  }
+  ];
+
+const elementsList = document.querySelector('.elements__list');
 const popups = document.querySelectorAll('.popup');
 const editPopup = document.querySelector('#edit-popup');
 const addPopup = document.querySelector('#add-popup');
@@ -21,7 +49,7 @@ const popupDesc = document.querySelector('#image-description');
 
 let openedPopup;
 
-initialCards.forEach(card => {new Card(card, '.elements__card').addCard(true)});
+initialCards.forEach(card => {addCard(new Card(card, '.elements__card'), true)});
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -41,9 +69,18 @@ function handleProfileFormSubmit(evt) {
   closePopup(editPopup);
 }
 
+function addCard(card, isAppend) {
+  card._createCard();
+  if (isAppend) {
+    elementsList.append(card.cardElement);
+  } else {
+    elementsList.prepend(card.cardElement);
+  }
+}
+
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  new Card({name: inputPlace.value, link: inputLink.value}, '.elements__card').addCard(false);
+  addCard(new Card({name: inputPlace.value, link: inputLink.value}, '.elements__card'), false);
   inputPlace.value = '';
   inputLink.value = '';
   submitButtonAddPopup.setAttribute('disabled', 'disabled');
