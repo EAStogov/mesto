@@ -9,8 +9,7 @@ class Card {
   }
 
   _createCard() {
-    const templateCard = document.querySelector('#card-template').content;
-    const newCard = templateCard.querySelector(this.cardSelector).cloneNode(true);
+    const newCard = this._getTemplate();
     const cardImage = newCard.querySelector('.elements__image');
     
     newCard.querySelector('.elements__place').textContent = this.place;
@@ -20,6 +19,16 @@ class Card {
     this._setEventListeners(newCard);
 
     return newCard;
+  }
+
+  _getTemplate() {
+    const cardElement = document
+      .querySelector('#card-template')
+      .content
+      .querySelector(this.cardSelector)
+      .cloneNode(true);
+
+    return cardElement;
   }
 
   _setEventListeners(obj) {
