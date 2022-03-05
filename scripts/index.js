@@ -106,7 +106,7 @@ editProfileButton.addEventListener('click', () => {
   inputName.value = profileName.textContent;
   inputDesc.value = profileDesc.textContent;
 });
-addCardButton.addEventListener('click', () => {openPopup(addPopup)});
+addCardButton.addEventListener('click', () => openPopup(addPopup));
 
 editForm.addEventListener('submit', handleProfileFormSubmit);
 addForm.addEventListener('submit', handleCardFormSubmit);
