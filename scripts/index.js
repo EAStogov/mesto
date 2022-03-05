@@ -81,8 +81,7 @@ function addCard(card, isAppend) {
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   addCard(new Card({name: inputPlace.value, link: inputLink.value}, '.elements__card'), false);
-  inputPlace.value = '';
-  inputLink.value = '';
+  addForm.reset();
   submitButtonAddPopup.setAttribute('disabled', 'disabled');
   submitButtonAddPopup.classList.add('popup__submit_disabled');
   closePopup(addPopup);
