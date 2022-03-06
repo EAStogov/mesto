@@ -70,7 +70,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 function addCard(card, isAppend) {
-  card._createCard();
+  card.createCard();
   if (isAppend) {
     elementsList.append(card.cardElement);
   } else {

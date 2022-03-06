@@ -8,7 +8,7 @@ class Card {
     this.cardSelector = cardSelector;
   }
 
-  _createCard() {
+  createCard() {
     this._getTemplate();
     const cardImage = this.cardElement.querySelector('.elements__image');
     
