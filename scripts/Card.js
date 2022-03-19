@@ -41,4 +41,4 @@ class Card {
   }
 }
 
-export { Card };
+export { Card, link, place };
