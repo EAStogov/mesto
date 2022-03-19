@@ -2,10 +2,11 @@ import {openPopup, imagePopup, popupImage, popupDesc} from './index.js';
 
 class Card {
 
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this.place = data.name;
     this.link = data.link;
     this.cardSelector = cardSelector;
+    this.handleCardClick = handleCardClick;
   }
 
   createCard() {
@@ -33,10 +34,7 @@ class Card {
       evt.target.classList.toggle('elements__like_active');
     });
     this.cardElement.querySelector('.elements__image').addEventListener('click', () => {
-      openPopup(imagePopup);
-      popupImage.setAttribute('src', this.link);
-      popupImage.setAttribute('alt', this.place);
-      popupDesc.textContent = this.place;
+      this.handleCardClick;
     })
   }
 }
