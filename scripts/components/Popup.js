@@ -28,8 +28,8 @@ export default class Popup {
     document.addEventListener('keydown', this._handleEscClose.bind(this));
   };
 
-  removeEventListeners() {
-    this.popup.removeEventListener('mousedown', this._overlayAndButtonClose.bind(this));
-    document.removeEventListener('keydown', this._handleEscClose.bind(this));
-  }
+  // removeEventListeners() {
+  //   this.popup.removeEventListener('mousedown', this._overlayAndButtonClose.bind(this));
+  //   document.removeEventListener('keydown', this._handleEscClose.bind(this));
+  // }
 }
