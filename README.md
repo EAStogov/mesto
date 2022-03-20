@@ -11,6 +11,9 @@
 * grid-layout;
 * JS;
 * ООП;
+* Деструктуризация объектов;
+* Bind;
+* WebPack;
 * Template-элементы
 * Figma
 
