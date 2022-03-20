@@ -1,27 +1,29 @@
+import { russia, croatia, germany, turkey, vietnam, japan } from '../../index.js';
+
 export const initialCards = [
   {
     place: 'Россия',
-    link: './images/Russia.jpg'
+    link: russia
   },
   {
     place: 'Хорватия',
-    link: './images/Croatia.jpg'
+    link: croatia
   },
   {
     place: 'Германия',
-    link: './images/Germany.jpg'
+    link: germany
   },
   {
     place: 'Турция',
-    link: './images/Turkey.jpg'
+    link: turkey
   },
   {
     place: 'Вьетнам',
-    link: './images/Vietnam.jpg'
+    link: vietnam
   },
   {
     place: 'Япония',
-    link: './images/Japan.jpg'
+    link: japan
   }
   ];
 

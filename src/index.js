@@ -1,10 +1,18 @@
-import Card from "../scripts/components/Card.js";
-import Section from "../scripts/components/Section.js"
-import { FormValidator, args } from "../scripts/components/FormValidator.js";
-import PopupWithForm from "../scripts/components/PopupWithForm.js";
-import PopupWithImage from "../scripts/components/PopupWithImage.js";
-import UserInfo from "../scripts/components/UserInfo.js";
-import * as constant from "../scripts/utils/constants.js";
+import Card from "./scripts/components/Card.js";
+import Section from "./scripts/components/Section.js"
+import { FormValidator, args } from "./scripts/components/FormValidator.js";
+import PopupWithForm from "./scripts/components/PopupWithForm.js";
+import PopupWithImage from "./scripts/components/PopupWithImage.js";
+import UserInfo from "./scripts/components/UserInfo.js";
+import * as constant from "./scripts/utils/constants.js";
+import './styles/index.css';
+
+export const russia = new URL('./images/Russia.jpg', import.meta.url);
+export const croatia = new URL('./images/Croatia.jpg', import.meta.url);
+export const germany = new URL('./images/Germany.jpg', import.meta.url);
+export const turkey = new URL('./images/Turkey.jpg', import.meta.url);
+export const vietnam = new URL('./images/Vietnam.jpg', import.meta.url);
+export const japan = new URL('./images/Japan.jpg', import.meta.url);
 
 const cardSection = new Section({
   items: constant.initialCards,
