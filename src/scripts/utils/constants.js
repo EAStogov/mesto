@@ -1,32 +1,3 @@
-import { russia, croatia, germany, turkey, vietnam, japan } from '../../index.js';
-
-export const initialCards = [
-  {
-    place: 'Россия',
-    link: russia
-  },
-  {
-    place: 'Хорватия',
-    link: croatia
-  },
-  {
-    place: 'Германия',
-    link: germany
-  },
-  {
-    place: 'Турция',
-    link: turkey
-  },
-  {
-    place: 'Вьетнам',
-    link: vietnam
-  },
-  {
-    place: 'Япония',
-    link: japan
-  }
-  ];
-
 export const elementsList = document.querySelector('.elements__list');
 export const popups = document.querySelectorAll('.popup');
 export const addPopup = document.querySelector('#add-popup');
