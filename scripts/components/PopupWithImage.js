@@ -1,11 +1,11 @@
-import { popupImage, popupDesc } from "../scripts/index.js";
-import { link, place } from '../scripts/Card.js';
+import { popupImage, popupDesc } from "../utils/constants.js";
+import Popup from "./Popup.js";
 
-class PopupWithImage extends Popup {
+export default class PopupWithImage extends Popup {
   constructor(link, place, selector) {
+    super(selector);
     this.link = link;
     this.place = place;
-    super(selector);
   }
 
   open() {

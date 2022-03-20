@@ -1,9 +1,7 @@
-import {openPopup, imagePopup, popupImage, popupDesc} from './index.js';
-
-class Card {
+export default class Card {
 
   constructor(data, cardSelector, handleCardClick) {
-    this.place = data.name;
+    this.place = data.place;
     this.link = data.link;
     this.cardSelector = cardSelector;
     this.handleCardClick = handleCardClick;
@@ -34,9 +32,7 @@ class Card {
       evt.target.classList.toggle('elements__like_active');
     });
     this.cardElement.querySelector('.elements__image').addEventListener('click', () => {
-      this.handleCardClick;
+      this.handleCardClick();
     })
   }
 }
-
-export { Card, link, place };
