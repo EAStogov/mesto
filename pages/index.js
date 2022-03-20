@@ -40,7 +40,6 @@ const popupWithAddForm = new PopupWithForm('#add-popup', () => {
     link: constant.inputLink.value
   })
   popupWithAddForm.close();
-  popupWithAddForm.removeEventListeners();
   constant.submitButtonAddPopup.setAttribute('disabled', 'disabled');
   constant.submitButtonAddPopup.classList.add('popup__submit_disabled');
 });
