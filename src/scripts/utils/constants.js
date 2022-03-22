@@ -45,5 +45,3 @@ export const inputName = document.querySelector('.popup__input_value_name');
 export const inputDesc = document.querySelector('.popup__input_value_description');
 export const inputPlace = document.querySelector('.popup__input_value_place');
 export const inputLink = document.querySelector('.popup__input_value_link');
-export const popupImage = document.querySelector('.popup__image');
-export const popupDesc = document.querySelector('#image-description');

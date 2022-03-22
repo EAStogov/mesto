@@ -11,9 +11,7 @@ const cardSection = new Section({
   items: constant.initialCards,
   renderer: (item) => {
     const card = new Card(item, '.elements__card', () => {
-      popupWithImage.link = item.link;
-      popupWithImage.place = item.place;
-      popupWithImage.open();
+      popupWithImage.open(item);
     });
     card.createCard();
     cardSection.addItem(card.cardElement);
@@ -27,7 +25,7 @@ cardSection.items.forEach(item => {
 const userInfo = new UserInfo({ name: '.profile__name', desc: '.profile__description' });
 let userData = userInfo.getUserInfo();
 
-const popupWithImage = new PopupWithImage(constant.initialCards.link, constant.initialCards.name, constant.imagePopup);
+const popupWithImage = new PopupWithImage(constant.imagePopup);
 
 const popupWithEditForm = new PopupWithForm('#edit-popup', () => {
   userInfo.setUserInfo(popupWithEditForm.inputValues);
