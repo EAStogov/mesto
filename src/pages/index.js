@@ -27,11 +27,8 @@ const popupWithEditForm = new PopupWithForm('#edit-popup', () => {
   popupWithEditForm.close();
 });
 
-const popupWithAddForm = new PopupWithForm('#add-popup', () => {
-  cardSection.addItem({
-    place: constant.inputPlace.value, 
-    link: constant.inputLink.value
-  })
+const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
+  cardSection.addItem(inputValues);
   popupWithAddForm.close();
   constant.submitButtonAddPopup.setAttribute('disabled', 'disabled');
   constant.submitButtonAddPopup.classList.add('popup__submit_disabled');
