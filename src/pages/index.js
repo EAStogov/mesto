@@ -30,8 +30,6 @@ const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
 const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
   cardSection.addItem(inputValues);
   popupWithAddForm.close();
-  constant.submitButtonAddPopup.setAttribute('disabled', 'disabled');
-  constant.submitButtonAddPopup.classList.add('popup__submit_disabled');
 });
 
 const editFormValidator = new FormValidator(constant.validationArgs, constant.editForm);
