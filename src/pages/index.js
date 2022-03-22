@@ -58,6 +58,6 @@ constant.addCardButton.addEventListener('click', () => {
   popupWithAddForm.open();
 });
 
-popupWithAddForm.setEventListeners();
-popupWithEditForm.setEventListeners();
-popupWithImage.setEventListeners();
+// popupWithAddForm.setEventListeners();
+// popupWithEditForm.setEventListeners();
+// popupWithImage.setEventListeners();
