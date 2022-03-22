@@ -1,6 +1,6 @@
 import Card from "../scripts/components/Card.js";
 import Section from "../scripts/components/Section.js";
-import { FormValidator, args } from "../scripts/components/FormValidator.js";
+import FormValidator from "../scripts/components/FormValidator.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import UserInfo from "../scripts/components/UserInfo.js";
@@ -22,8 +22,8 @@ cardSection.renderItems();
 
 const userInfo = new UserInfo({ name: '.profile__name', desc: '.profile__description' });
 
-const popupWithEditForm = new PopupWithForm('#edit-popup', () => {
-  userInfo.setUserInfo(popupWithEditForm.inputValues);
+const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
+  userInfo.setUserInfo(inputValues);
   popupWithEditForm.close();
 });
 
@@ -34,20 +34,23 @@ const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
   constant.submitButtonAddPopup.classList.add('popup__submit_disabled');
 });
 
+const editFormValidator = new FormValidator(constant.validationArgs, constant.editForm);
+editFormValidator.enableValidation();
+const addFormValidator = new FormValidator(constant.validationArgs, constant.addForm);
+addFormValidator.enableValidation();
+
 constant.editProfileButton.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
   constant.inputName.value = userData.name;
   constant.inputDesc.value = userData.desc;
+  editFormValidator.resetValidation();
   popupWithEditForm.open();
 });
 constant.addCardButton.addEventListener('click', () => {
+  addFormValidator.resetValidation();
   popupWithAddForm.open();
-
 });
 
 popupWithAddForm.setEventListeners();
 popupWithEditForm.setEventListeners();
 popupWithImage.setEventListeners();
-
-new FormValidator(args, constant.editForm).enableValidation();
-new FormValidator(args, constant.addForm).enableValidation();

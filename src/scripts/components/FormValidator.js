@@ -1,24 +1,22 @@
-class FormValidator {
+export default class FormValidator {
   constructor(obj, formElement) {
-    this.formSelector = obj.formSelector;
-    this.inputSelector = obj.inputSelector;
-    this.submitButton = obj.submitButtonSelector;
-    this.inactiveButtonClass = obj.inactiveButtonClass;
-    this.inputErrorClass = obj.inputErrorClass;
-    this.errorClass = obj.errorClass;
-    this.formElement = formElement;
+    this._formSelector = obj.formSelector;
+    this._inputSelector = obj.inputSelector;
+    this._form = document.querySelector(this._formSelector);
+    this._submitButton = this._form.querySelector(obj.submitButtonSelector);
+    this._inactiveButtonClass = obj.inactiveButtonClass;
+    this._inputErrorClass = obj.inputErrorClass;
+    this._errorClass = obj.errorClass;
+    this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
 
-  _setEventListeners(form) {
-    const inputs = Array.from(form.querySelectorAll(this.inputSelector));
-    const formButton = form.querySelector(this.submitButton);
-  
-    this._toggleButtonState(inputs, formButton);
-  
-    inputs.forEach(input => {
+  _setEventListeners() {
+    this._toggleButtonState();
+    this._inputList.forEach(input => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
-        this._toggleButtonState(inputs, formButton);
+        this._toggleButtonState();
       })
     });
   }
@@ -31,51 +29,47 @@ class FormValidator {
     }
   }
 
-  _toggleButtonState(inputs, formButton) {
-    if (this._containsInvalidInput(inputs)) {
-      formButton.classList.add(this.inactiveButtonClass);
-      formButton.setAttribute('disabled', 'disabled');
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach(input => {
+      this._removeInputError(input);
+    })
+  }
+
+  _toggleButtonState() {
+    if (this._containsInvalidInput()) {
+      this._submitButton.classList.add(this._inactiveButtonClass);
+      this._submitButton.setAttribute('disabled', 'disabled');
     } else {
-      formButton.classList.remove(this.inactiveButtonClass);
-      formButton.removeAttribute('disabled');
+      this._submitButton.classList.remove(this._inactiveButtonClass);
+      this._submitButton.removeAttribute('disabled');
     }
   }
 
   _showInputError(input) {
-    const errorElement = this.formElement.querySelector(`.popup__error_type_${input.name}`);
-    input.classList.add(this.inputErrorClass);
+    const errorElement = this._formElement.querySelector(`.popup__error_type_${input.name}`);
+    input.classList.add(this._inputErrorClass);
     errorElement.textContent = input.validationMessage;
-    errorElement.classList.add(this.errorClass);
+    errorElement.classList.add(this._errorClass);
   }
 
   _removeInputError(input) {
-    const errorElement = this.formElement.querySelector(`.popup__error_type_${input.name}`);
-    input.classList.remove(this.inputErrorClass);
+    const errorElement = this._formElement.querySelector(`.popup__error_type_${input.name}`);
+    input.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
-    errorElement.classList.remove(this.errorClass);
+    errorElement.classList.remove(this._errorClass);
   }
 
-  _containsInvalidInput(inputs) {
-    return inputs.some(input => {
+  _containsInvalidInput() {
+    return this._inputList.some(input => {
       return !input.validity.valid;
     })
   }
 
   enableValidation() {
-    this._setEventListeners(this.formElement);
-    this.formElement.addEventListener('submit', (evt) => {
+    this._setEventListeners();
+    this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
   }
 }
-
-const args = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
-
-export {FormValidator, args};

@@ -30,7 +30,16 @@ export const initialCards = [
     place: 'Япония',
     link: japan
   }
-  ];
+];
+
+export const validationArgs = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
 export const elementsList = document.querySelector('.elements__list');
 export const popups = document.querySelectorAll('.popup');
