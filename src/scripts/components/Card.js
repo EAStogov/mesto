@@ -1,38 +1,39 @@
 export default class Card {
 
   constructor(data, cardSelector, handleCardClick) {
-    this.place = data.place;
-    this.link = data.link;
-    this.cardSelector = cardSelector;
-    this.handleCardClick = handleCardClick;
+    this._place = data.place;
+    this._link = data.link;
+    this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   createCard() {
     this._getTemplate();
-    const cardImage = this.cardElement.querySelector('.elements__image');
+    const cardImage = this._cardElement.querySelector('.elements__image');
     
-    this.cardElement.querySelector('.elements__place').textContent = this.place;
-    cardImage.setAttribute('src', this.link);
-    cardImage.setAttribute('alt', this.place);
+    this._cardElement.querySelector('.elements__place').textContent = this._place;
+    cardImage.setAttribute('src', this._link);
+    cardImage.setAttribute('alt', this._place);
     
     this._setEventListeners();
+    return this._cardElement;
   }
 
   _getTemplate() {
-    this.cardElement = document
-      .querySelector('#card-template')
+    this._cardElement = document
+      .querySelector(this._cardSelector)
       .content
-      .querySelector(this.cardSelector)
+      .querySelector('.elements__card')
       .cloneNode(true);
   }
 
   _setEventListeners() {
-    this.cardElement.querySelector('.elements__trash').addEventListener('click', () => this.cardElement.remove());
-    this.cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
+    this._cardElement.querySelector('.elements__trash').addEventListener('click', () => this._cardElement.remove());
+    this._cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
       evt.target.classList.toggle('elements__like_active');
     });
-    this.cardElement.querySelector('.elements__image').addEventListener('click', () => {
-      this.handleCardClick();
+    this._cardElement.querySelector('.elements__image').addEventListener('click', () => {
+      this._handleCardClick();
     })
   }
 }

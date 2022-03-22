@@ -10,11 +10,11 @@ import './index.css';
 const cardSection = new Section({
   items: constant.initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.elements__card', () => {
+    const card = new Card(item, '#card-template', () => {
       popupWithImage.open(item);
     });
-    card.createCard();
-    cardSection.addItem(card.cardElement);
+    const cardElement = card.createCard();
+    cardSection.addItem(cardElement);
   }
 }, '.elements__list');
 
