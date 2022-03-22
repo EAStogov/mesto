@@ -1,3 +1,37 @@
+const russia = new URL('../../images/Russia.jpg', import.meta.url);
+const croatia = new URL('../../images/Croatia.jpg', import.meta.url);
+const germany = new URL('../../images/Germany.jpg', import.meta.url);
+const turkey = new URL('../../images/Turkey.jpg', import.meta.url);
+const vietnam = new URL('../../images/Vietnam.jpg', import.meta.url);
+const japan = new URL('../../images/Japan.jpg', import.meta.url);
+
+export const initialCards = [
+  {
+    place: 'Россия',
+    link: russia
+  },
+  {
+    place: 'Хорватия',
+    link: croatia
+  },
+  {
+    place: 'Германия',
+    link: germany
+  },
+  {
+    place: 'Турция',
+    link: turkey
+  },
+  {
+    place: 'Вьетнам',
+    link: vietnam
+  },
+  {
+    place: 'Япония',
+    link: japan
+  }
+  ];
+
 export const elementsList = document.querySelector('.elements__list');
 export const popups = document.querySelectorAll('.popup');
 export const addPopup = document.querySelector('#add-popup');

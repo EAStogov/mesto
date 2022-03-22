@@ -7,41 +7,8 @@ import UserInfo from "../scripts/components/UserInfo.js";
 import * as constant from "../scripts/utils/constants.js";
 import './index.css';
 
-const russia = new URL('../images/Russia.jpg', import.meta.url);
-const croatia = new URL('../images/Croatia.jpg', import.meta.url);
-const germany = new URL('../images/Germany.jpg', import.meta.url);
-const turkey = new URL('../images/Turkey.jpg', import.meta.url);
-const vietnam = new URL('../images/Vietnam.jpg', import.meta.url);
-const japan = new URL('../images/Japan.jpg', import.meta.url);
-const initialCards = [
-  {
-    place: 'Россия',
-    link: russia
-  },
-  {
-    place: 'Хорватия',
-    link: croatia
-  },
-  {
-    place: 'Германия',
-    link: germany
-  },
-  {
-    place: 'Турция',
-    link: turkey
-  },
-  {
-    place: 'Вьетнам',
-    link: vietnam
-  },
-  {
-    place: 'Япония',
-    link: japan
-  }
-  ];
-
 const cardSection = new Section({
-  items: initialCards,
+  items: constant.initialCards,
   renderer: (item) => {
     const card = new Card(item, '.elements__card', () => {
       popupWithImage.link = item.link;
@@ -60,7 +27,7 @@ cardSection.items.forEach(item => {
 const userInfo = new UserInfo({ name: '.profile__name', desc: '.profile__description' });
 let userData = userInfo.getUserInfo();
 
-const popupWithImage = new PopupWithImage(initialCards.link, initialCards.name, constant.imagePopup);
+const popupWithImage = new PopupWithImage(constant.initialCards.link, constant.initialCards.name, constant.imagePopup);
 
 const popupWithEditForm = new PopupWithForm('#edit-popup', () => {
   userInfo.setUserInfo(popupWithEditForm.inputValues);
