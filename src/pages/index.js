@@ -7,25 +7,21 @@ import UserInfo from "../scripts/components/UserInfo.js";
 import * as constant from "../scripts/utils/constants.js";
 import './index.css';
 
+const popupWithImage = new PopupWithImage(constant.imagePopup);
+
 const cardSection = new Section({
   items: constant.initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#card-template', () => {
+    return new Card(item, '#card-template', () => {
       popupWithImage.open(item);
-    });
-    const cardElement = card.createCard();
-    cardSection.addItem(cardElement);
+    }).createCard();
   }
 }, '.elements__list');
 
-cardSection.items.forEach(item => {
-  cardSection.rendererItems(item);
-})
+cardSection.renderItems();
 
 const userInfo = new UserInfo({ name: '.profile__name', desc: '.profile__description' });
 let userData = userInfo.getUserInfo();
-
-const popupWithImage = new PopupWithImage(constant.imagePopup);
 
 const popupWithEditForm = new PopupWithForm('#edit-popup', () => {
   userInfo.setUserInfo(popupWithEditForm.inputValues);
@@ -33,7 +29,7 @@ const popupWithEditForm = new PopupWithForm('#edit-popup', () => {
 });
 
 const popupWithAddForm = new PopupWithForm('#add-popup', () => {
-  cardSection.rendererItems({
+  cardSection.addItem({
     place: constant.inputPlace.value, 
     link: constant.inputLink.value
   })
