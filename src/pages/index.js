@@ -32,20 +32,29 @@ const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
   popupWithAddForm.close();
 });
 
-const editFormValidator = new FormValidator(constant.validationArgs, constant.editForm);
-editFormValidator.enableValidation();
-const addFormValidator = new FormValidator(constant.validationArgs, constant.addForm);
-addFormValidator.enableValidation();
+const formValidators = {}
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(constant.validationArgs);
 
 constant.editProfileButton.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
   constant.inputName.value = userData.name;
   constant.inputDesc.value = userData.desc;
-  editFormValidator.resetValidation();
+  formValidators['popup__form-edit'].resetValidation();
   popupWithEditForm.open();
 });
 constant.addCardButton.addEventListener('click', () => {
-  addFormValidator.resetValidation();
+  formValidators['popup__form-add'].resetValidation();
   popupWithAddForm.open();
 });
 
