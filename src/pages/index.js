@@ -21,7 +21,6 @@ const cardSection = new Section({
 cardSection.renderItems();
 
 const userInfo = new UserInfo({ name: '.profile__name', desc: '.profile__description' });
-let userData = userInfo.getUserInfo();
 
 const popupWithEditForm = new PopupWithForm('#edit-popup', () => {
   userInfo.setUserInfo(popupWithEditForm.inputValues);
@@ -39,7 +38,7 @@ const popupWithAddForm = new PopupWithForm('#add-popup', () => {
 });
 
 constant.editProfileButton.addEventListener('click', () => {
-  userData = userInfo.getUserInfo();
+  const userData = userInfo.getUserInfo();
   constant.inputName.value = userData.name;
   constant.inputDesc.value = userData.desc;
   popupWithEditForm.open();
