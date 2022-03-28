@@ -57,7 +57,3 @@ constant.addCardButton.addEventListener('click', () => {
   formValidators['popup__form-add'].resetValidation();
   popupWithAddForm.open();
 });
-
-// popupWithAddForm.setEventListeners();
-// popupWithEditForm.setEventListeners();
-// popupWithImage.setEventListeners();
