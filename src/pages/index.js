@@ -4,16 +4,21 @@ import FormValidator from "../scripts/components/FormValidator.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import UserInfo from "../scripts/components/UserInfo.js";
+import PopupWithConfirm from "../scripts/components/PopupWithConfirm.js";
 import * as constant from "../scripts/utils/constants.js";
 import './index.css';
 
 const popupWithImage = new PopupWithImage(constant.imagePopup);
+
+const popupWithConfirm = new PopupWithConfirm('#confirm-popup', '.popup__submit')
 
 const cardSection = new Section({
   items: constant.initialCards,
   renderer: (item) => {
     return new Card(item, '#card-template', () => {
       popupWithImage.open(item);
+    }, (cardElement) => {
+      popupWithConfirm.open(cardElement);
     }).createCard();
   }
 }, '.elements__list');

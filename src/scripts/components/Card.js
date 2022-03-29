@@ -1,10 +1,11 @@
 export default class Card {
 
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, handleCardClick, handleTrashClick) {
     this._place = data.place;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleTrashClick = handleTrashClick;
   }
 
   createCard() {
@@ -28,7 +29,9 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._cardElement.querySelector('.elements__trash').addEventListener('click', () => this._cardElement.remove());
+    this._cardElement.querySelector('.elements__trash').addEventListener('click', () => {
+      this._handleTrashClick(this._cardElement);
+    });
     this._cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
       evt.target.classList.toggle('elements__like_active');
     });
