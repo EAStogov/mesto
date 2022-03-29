@@ -32,6 +32,11 @@ const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
   popupWithAddForm.close();
 });
 
+const popupWithAvatarForm = new PopupWithForm('#avatar-popup', (inputValues) => {
+  constant.avatar.style.background = `url(${inputValues.avatar})`;
+  popupWithAvatarForm.close();
+})
+
 const formValidators = {}
 
 const enableValidation = (config) => {
@@ -57,3 +62,7 @@ constant.addCardButton.addEventListener('click', () => {
   formValidators['popup__form-add'].resetValidation();
   popupWithAddForm.open();
 });
+constant.changeAvatarButton.addEventListener('click', () => {
+  formValidators['popup__form-avatar'].resetValidation();
+  popupWithAvatarForm.open();
+})
