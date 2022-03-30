@@ -29,18 +29,34 @@ api.getProfileInfo().then(res => {
 })
 
 api.getInitialCards().then(rsl => {
-  const cardSection = new Section({
-    items: rsl,
-    renderer: (item) => {
-      return new Card(item, '#card-template', () => {
-        popupWithImage.open(item);
-      }, (cardElement) => {
-        popupWithConfirm.open(cardElement);
-      }).createCard();
-    }
-  }, '.elements__list');
 
-  cardSection.renderItems();
+  api.getProfileInfo().then(resProfile => {
+
+    const cardSection = new Section({
+      items: rsl,
+      renderer: (item) => {
+        return new Card(item, '#card-template', () => {
+          popupWithImage.open(item);
+        }, (cardElement) => {
+          popupWithConfirm.open(cardElement);
+        }).createCard(item.owner._id !== resProfile._id);
+      }
+    }, '.elements__list');
+
+    cardSection.renderItems();
+
+    const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
+      api.postNewCard(inputValues).then(res => {
+        cardSection.addItem(res);
+        popupWithAddForm.close();
+      })
+    });
+
+    constant.addCardButton.addEventListener('click', () => {
+      formValidators['popup__form-add'].resetValidation();
+      popupWithAddForm.open();
+    });
+  })
 })
 
 const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
@@ -50,11 +66,6 @@ const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
   }).catch(err => {
     alert(`Что-то пошло не так. ${err}`);
   })
-});
-
-const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
-  cardSection.addItem(inputValues);
-  popupWithAddForm.close();
 });
 
 const popupWithAvatarForm = new PopupWithForm('#avatar-popup', (inputValues) => {
@@ -85,11 +96,6 @@ constant.editProfileButton.addEventListener('click', () => {
   constant.inputDesc.value = userData.desc;
   formValidators['popup__form-edit'].resetValidation();
   popupWithEditForm.open();
-});
-
-constant.addCardButton.addEventListener('click', () => {
-  formValidators['popup__form-add'].resetValidation();
-  popupWithAddForm.open();
 });
 
 constant.changeAvatarButton.addEventListener('click', () => {

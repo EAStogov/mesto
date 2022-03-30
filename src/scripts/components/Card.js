@@ -8,7 +8,7 @@ export default class Card {
     this._handleTrashClick = handleTrashClick;
   }
 
-  createCard() {
+  createCard(hasTrash) {
     this._getTemplate();
     const cardImage = this._cardElement.querySelector('.elements__image');
     
@@ -17,6 +17,10 @@ export default class Card {
     cardImage.setAttribute('alt', this._place);
     
     this._setEventListeners();
+    
+    if (hasTrash) {
+      this._cardElement.querySelector('.elements__trash').classList.add('elements__trash_desabled');
+    };
     return this._cardElement;
   }
 

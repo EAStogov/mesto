@@ -32,6 +32,17 @@ export default class API {
     }));
   }
 
+  postNewCard(data) {
+    return this._makeRequest(fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.place,
+        link: data.link
+      })
+    }));
+  }
+
   editProfile(name, about) {
     return this._makeRequest(fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
