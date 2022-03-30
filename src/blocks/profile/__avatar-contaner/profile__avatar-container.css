@@ -1,6 +1,6 @@
 .profile__avatar-container {
   padding: 0;
-  background: url(../../../images/Avatar.jpg) no-repeat transparent;
+  background: no-repeat transparent;
   width: 120px;
   height: 120px;
   border-radius: 50%;

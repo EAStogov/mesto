@@ -5,31 +5,51 @@ import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import PopupWithConfirm from "../scripts/components/PopupWithConfirm.js";
+import API from "../scripts/components/Api.js";
 import * as constant from "../scripts/utils/constants.js";
 import './index.css';
 
 const popupWithImage = new PopupWithImage(constant.imagePopup);
 
-const popupWithConfirm = new PopupWithConfirm('#confirm-popup', '.popup__submit')
+const popupWithConfirm = new PopupWithConfirm('#confirm-popup', '.popup__submit');
 
-const cardSection = new Section({
-  items: constant.initialCards,
-  renderer: (item) => {
-    return new Card(item, '#card-template', () => {
-      popupWithImage.open(item);
-    }, (cardElement) => {
-      popupWithConfirm.open(cardElement);
-    }).createCard();
+const api = new API({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-38',
+  headers: {
+    authorization: 'c110315e-0183-458e-8866-3f24fd7f9a0a',
+    'Content-Type': 'application/json'
   }
-}, '.elements__list');
-
-cardSection.renderItems();
+});
 
 const userInfo = new UserInfo({ name: '.profile__name', desc: '.profile__description' });
 
+api.getProfileInfo().then(res => {
+  userInfo.setUserInfo({name: res.name, description: res.about});
+  constant.avatar.style.background = `url(${res.avatar})`;
+})
+
+api.getInitialCards().then(rsl => {
+  const cardSection = new Section({
+    items: rsl,
+    renderer: (item) => {
+      return new Card(item, '#card-template', () => {
+        popupWithImage.open(item);
+      }, (cardElement) => {
+        popupWithConfirm.open(cardElement);
+      }).createCard();
+    }
+  }, '.elements__list');
+
+  cardSection.renderItems();
+})
+
 const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
-  userInfo.setUserInfo(inputValues);
-  popupWithEditForm.close();
+  api.editProfile(inputValues.name, inputValues.description).then((res) => {
+      userInfo.setUserInfo({name: res.name, description: res.about});
+      popupWithEditForm.close();
+  }).catch(err => {
+    alert(`Что-то пошло не так. ${err}`);
+  })
 });
 
 const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
@@ -38,8 +58,11 @@ const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
 });
 
 const popupWithAvatarForm = new PopupWithForm('#avatar-popup', (inputValues) => {
-  constant.avatar.style.background = `url(${inputValues.avatar})`;
-  popupWithAvatarForm.close();
+  api.editAvatar(inputValues.avatar).then(res => {
+    constant.avatar.style.background = `url(${res.avatar})`;
+    popupWithAvatarForm.close();
+  })
+  
 })
 
 const formValidators = {}
@@ -63,10 +86,12 @@ constant.editProfileButton.addEventListener('click', () => {
   formValidators['popup__form-edit'].resetValidation();
   popupWithEditForm.open();
 });
+
 constant.addCardButton.addEventListener('click', () => {
   formValidators['popup__form-add'].resetValidation();
   popupWithAddForm.open();
 });
+
 constant.changeAvatarButton.addEventListener('click', () => {
   formValidators['popup__form-avatar'].resetValidation();
   popupWithAvatarForm.open();
