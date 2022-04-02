@@ -11,8 +11,6 @@ export default class API {
       } else {
         return Promise.reject(`Что-то пошло не так. ${res.status}`);
       }
-    }).then(obj => {
-      return obj;
     }).catch(err => {
       alert(`Что-то пошло не так. ${err}`);
     });
@@ -64,22 +62,15 @@ export default class API {
     }));
   }
 
-  putLike(cardId) {
+  _like(cardId) {
     return this._makeRequest(fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers
     }));
   }
 
-  deleteLike(cardId) {
+  _dislike(cardId) {
     return this._makeRequest(fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-    }));
-  }
-
-  deleteCard(cardId) {
-    return this._makeRequest(fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     }));
@@ -87,9 +78,16 @@ export default class API {
 
   toggleLikeAction(isDelete, cardId) {
     if (isDelete) {
-      return this.deleteLike(cardId);
+      return this._dislike(cardId);
     } else {
-      return this.putLike(cardId);
+      return this._like(cardId);
     }
+  }
+
+  deleteCard(cardId) {
+    return this._makeRequest(fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    }));
   }
 }
