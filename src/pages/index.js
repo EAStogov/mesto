@@ -63,8 +63,6 @@ const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
   api.editProfile(inputValues.name, inputValues.description).then((res) => {
       userInfo.setUserInfo({name: res.name, description: res.about});
       popupWithEditForm.close();
-  }).catch(err => {
-    alert(`Что-то пошло не так. ${err}`);
   })
 });
 

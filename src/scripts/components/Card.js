@@ -12,8 +12,6 @@ export default class Card {
   }
 
   createCard(ownerId, user) {
-    this._user = JSON.stringify(user);
-    
     this._getTemplate();
     const cardImage = this._cardElement.querySelector('.elements__image');
 
@@ -25,6 +23,8 @@ export default class Card {
     cardImage.setAttribute('alt', this._place);
     
     this._setEventListeners();
+    
+    this._user = JSON.stringify(user);
     
     if (ownerId !== user._id) {
       this._cardElement.querySelector('.elements__trash').classList.add('elements__trash_desabled');
