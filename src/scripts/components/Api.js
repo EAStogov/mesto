@@ -9,10 +9,10 @@ export default class API {
       if (res.ok) {
         return res.json();
       } else {
-        return Promise.reject(`Что-то пошло не так. ${res.status}`);
+        return Promise.reject(`Что-то пошло не так. Код ошибки: ${res.status}`);
       }
     }).catch(err => {
-      alert(`Что-то пошло не так. ${err}`);
+      alert(err);
     });
   }
 
