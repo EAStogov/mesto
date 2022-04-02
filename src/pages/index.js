@@ -38,7 +38,7 @@ api.getInitialCards().then(rsl => {
         return new Card(item, '#card-template', () => {
           popupWithImage.open(item);
         }, (cardElement) => {
-          popupWithConfirm.open(cardElement);
+          popupWithConfirm.open(cardElement, api, item._id);
         }, api).createCard(item.owner._id, resProfile);
       }
     }, '.elements__list');

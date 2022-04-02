@@ -78,6 +78,13 @@ export default class API {
     }));
   }
 
+  deleteCard(cardId) {
+    return this._makeRequest(fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    }));
+  }
+
   toggleLikeAction(isDelete, cardId) {
     if (isDelete) {
       return this.deleteLike(cardId);

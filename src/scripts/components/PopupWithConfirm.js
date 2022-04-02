@@ -17,13 +17,18 @@ export default class PopupWithConfirm extends Popup {
     this.button.removeEventListener('click', this._deleteItem);
   }
 
-  open(item) {
+  open(item, api, cardId) {
     super.open();
+    console.log(item);
+    this._api = api;
+    this._cardId = cardId;
     this._item = item;
   }
 
   _deleteItem() {
-    this._item.remove();
+    this._api.deleteCard(this._cardId).then(() => {
     this.close();
+    this._item.remove();
+    })
   }
 }
