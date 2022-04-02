@@ -39,7 +39,7 @@ api.getInitialCards().then(rsl => {
           popupWithImage.open(item);
         }, (cardElement) => {
           popupWithConfirm.open(cardElement);
-        }).createCard(item.owner._id !== resProfile._id);
+        }, api).createCard(item.owner._id, resProfile);
       }
     }, '.elements__list');
 

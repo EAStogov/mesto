@@ -63,4 +63,26 @@ export default class API {
       })
     }));
   }
+
+  putLike(cardId) {
+    return this._makeRequest(fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    }));
+  }
+
+  deleteLike(cardId) {
+    return this._makeRequest(fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+    }));
+  }
+
+  toggleLikeAction(isDelete, cardId) {
+    if (isDelete) {
+      return this.deleteLike(cardId);
+    } else {
+      return this.putLike(cardId);
+    }
+  }
 }
