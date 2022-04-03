@@ -45,7 +45,8 @@ export default class Card {
       .cloneNode(true);
   }
 
-  updateLike(res) {
+  updateLike(res, evt) {
+    evt.target.classList.toggle('elements__like_active');
     this._likeCount.textContent = res.likes.length;
     this.likes = JSON.stringify(res.likes);
   }
@@ -56,8 +57,7 @@ export default class Card {
     });
 
     this._cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
-      evt.target.classList.toggle('elements__like_active');
-      this._handleLike(this);
+      this._handleLike(this, evt);
     });
 
     this._cardElement.querySelector('.elements__image').addEventListener('click', () => {

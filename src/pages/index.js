@@ -34,9 +34,9 @@ Promise.all([api.getInitialCards(), api.getProfileInfo()])
         popupWithImage.open(item);
       }, (cardElement) => {
         popupWithConfirm.open(cardElement, api, item._id);
-      }, (card) => {
+      }, (card, evt) => {
         api.toggleLikeAction(card.likes.includes(JSON.stringify(userData)), item._id).then(res => {
-          card.updateLike(res);
+          card.updateLike(res, evt);
         }).catch(err => {
           alert('Что-то пошло не так. Ошибка: ' + err);
         });
