@@ -44,7 +44,7 @@ export const validationArgs = {
 export const profileConfig = {
   name: '.profile__name',
   about: '.profile__description',
-  avatar: '.profile__avatar-container'
+  avatar: '.profile__avatar'
 }
 
 export const elementsList = document.querySelector('.elements__list');
@@ -55,7 +55,7 @@ export const imagePopup = '#image-popup';
 export const editProfileButton = document.querySelector('.profile__button_type_edit');
 export const addCardButton = document.querySelector('.profile__button_type_add');
 export const changeAvatarButton = document.querySelector('.profile__button_type_avatar');
-export const avatar = document.querySelector('.profile__avatar-container');
+export const avatar = document.querySelector('.profile__avatar');
 export const editForm = document.querySelector('.popup__form_fill_edit');
 export const addForm = document.querySelector('.popup__form_fill_add');
 export const inputName = document.querySelector('.popup__input_value_name');
