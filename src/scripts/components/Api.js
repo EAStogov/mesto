@@ -11,8 +11,6 @@ export default class API {
       } else {
         return Promise.reject(`Что-то пошло не так. Код ошибки: ${res.status}`);
       }
-    }).catch(err => {
-      alert(err);
     });
   }
 
