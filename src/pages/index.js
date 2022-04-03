@@ -21,11 +21,10 @@ const api = new API({
   }
 });
 
-const userInfo = new UserInfo({ name: '.profile__name', desc: '.profile__description' });
+const userInfo = new UserInfo(constant.profileConfig);
 
 api.getProfileInfo().then(res => {
-  userInfo.setUserInfo({name: res.name, description: res.about});
-  constant.avatar.style.background = `url(${res.avatar})`;
+  userInfo.setUserInfo(res);
 })
 
 api.getInitialCards().then(rsl => {

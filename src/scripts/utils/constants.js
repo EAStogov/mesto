@@ -41,6 +41,12 @@ export const validationArgs = {
   errorClass: 'popup__error_visible'
 };
 
+export const profileConfig = {
+  name: '.profile__name',
+  about: '.profile__description',
+  avatar: '.profile__avatar-container'
+}
+
 export const elementsList = document.querySelector('.elements__list');
 export const popups = document.querySelectorAll('.popup');
 export const addPopup = document.querySelector('#add-popup');
