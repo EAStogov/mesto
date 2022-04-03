@@ -38,7 +38,13 @@ api.getInitialCards().then(rsl => {
           popupWithImage.open(item);
         }, (cardElement) => {
           popupWithConfirm.open(cardElement, api, item._id);
-        }, api).createCard(item.owner._id, resProfile);
+        }, (card) => {
+          api.toggleLikeAction(card.likes.includes(JSON.stringify(resProfile)), item._id).then(res => {
+            card.updateLike(res);
+          }).catch(err => {
+            alert(err);
+          });
+        }).createCard(item.owner._id, resProfile);
       }
     }, '.elements__list');
 

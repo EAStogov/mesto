@@ -1,14 +1,14 @@
 export default class Card {
 
-  constructor(data, cardSelector, handleCardClick, handleTrashClick, api) {
+  constructor(data, cardSelector, handleCardClick, handleTrashClick, handleLike) {
     this._place = data.name;
     this._link = data.link;
-    this._likes = JSON.stringify(data.likes);
+    this.likes = JSON.stringify(data.likes);
     this._cardId = data._id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
-    this._api = api;
+    this._handleLike = handleLike;
   }
 
   createCard(ownerId, user) {
@@ -17,7 +17,7 @@ export default class Card {
 
     this._cardElement.querySelector('.elements__place').textContent = this._place;
     this._likeCount = this._cardElement.querySelector('.elements__like-count');
-    this._likeCount.textContent = JSON.parse(this._likes).length;
+    this._likeCount.textContent = JSON.parse(this.likes).length;
 
     cardImage.setAttribute('src', this._link);
     cardImage.setAttribute('alt', this._place);
@@ -30,7 +30,7 @@ export default class Card {
       this._cardElement.querySelector('.elements__trash').classList.add('elements__trash_desabled');
     };
 
-    if (this._likes.includes(this._user)) {
+    if (this.likes.includes(this._user)) {
       this._cardElement.querySelector('.elements__like').classList.add('elements__like_active');
     }
 
@@ -45,17 +45,19 @@ export default class Card {
       .cloneNode(true);
   }
 
+  updateLike(res) {
+    this._likeCount.textContent = res.likes.length;
+    this.likes = JSON.stringify(res.likes);
+  }
+
   _setEventListeners() {
     this._cardElement.querySelector('.elements__trash').addEventListener('click', () => {
       this._handleTrashClick(this._cardElement);
     });
 
     this._cardElement.querySelector('.elements__like').addEventListener('click', (evt) => {
-      this._api.toggleLikeAction(this._likes.includes(this._user), this._cardId).then(res => {
-        this._likeCount.textContent = res.likes.length;
-        this._likes = JSON.stringify(res.likes);
-        evt.target.classList.toggle('elements__like_active');
-      })
+      evt.target.classList.toggle('elements__like_active');
+      this._handleLike(this);
     });
 
     this._cardElement.querySelector('.elements__image').addEventListener('click', () => {
