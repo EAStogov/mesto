@@ -22,52 +22,53 @@ const api = new API({
 });
 
 const userInfo = new UserInfo(constant.profileConfig);
+//
+Promise.all([api.getInitialCards(), api.getProfileInfo()])
+.then(([cards, userData]) => {
+  userInfo.setUserInfo(userData);
 
-api.getProfileInfo().then(res => {
-  userInfo.setUserInfo(res);
-})
+  const cardSection = new Section({
+    items: cards,
+    renderer: (item) => {
+      return new Card(item, '#card-template', () => {
+        popupWithImage.open(item);
+      }, (cardElement) => {
+        popupWithConfirm.open(cardElement, api, item._id);
+      }, (card) => {
+        api.toggleLikeAction(card.likes.includes(JSON.stringify(userData)), item._id).then(res => {
+          card.updateLike(res);
+        }).catch(err => {
+          alert('Что-то пошло не так. Ошибка: ' + err);
+        });
+      }).createCard(item.owner._id, userData);
+    }
+  }, '.elements__list');
 
-api.getInitialCards().then(rsl => {
+  cardSection.renderItems();
 
-  api.getProfileInfo().then(resProfile => {
+  const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
+    api.postNewCard(inputValues).then(res => {
+      cardSection.addItem(res);
+      popupWithAddForm.close();
+    }).catch(err => {
+      alert('Что-то пошло не так. Ошибка: ' + err);
+    })
+  });
 
-    const cardSection = new Section({
-      items: rsl,
-      renderer: (item) => {
-        return new Card(item, '#card-template', () => {
-          popupWithImage.open(item);
-        }, (cardElement) => {
-          popupWithConfirm.open(cardElement, api, item._id);
-        }, (card) => {
-          api.toggleLikeAction(card.likes.includes(JSON.stringify(resProfile)), item._id).then(res => {
-            card.updateLike(res);
-          }).catch(err => {
-            alert(err);
-          });
-        }).createCard(item.owner._id, resProfile);
-      }
-    }, '.elements__list');
-
-    cardSection.renderItems();
-
-    const popupWithAddForm = new PopupWithForm('#add-popup', (inputValues) => {
-      api.postNewCard(inputValues).then(res => {
-        cardSection.addItem(res);
-        popupWithAddForm.close();
-      })
-    });
-
-    constant.addCardButton.addEventListener('click', () => {
-      formValidators['popup__form-add'].resetValidation();
-      popupWithAddForm.open();
-    });
-  })
+  constant.addCardButton.addEventListener('click', () => {
+    formValidators['popup__form-add'].resetValidation();
+    popupWithAddForm.open();
+  });
+}).catch(err => {
+  alert('Что-то пошло не так. Ошибка: ' + err);
 })
 
 const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
   api.editProfile(inputValues).then((res) => {
       userInfo.setUserInfo(res);
       popupWithEditForm.close();
+  }).catch(err => {
+    alert('Что-то пошло не так. Ошибка: ' + err);
   })
 });
 
@@ -75,8 +76,9 @@ const popupWithAvatarForm = new PopupWithForm('#avatar-popup', (inputValues) => 
   api.editAvatar(inputValues.avatar).then(res => {
     userInfo.setUserInfo(res);
     popupWithAvatarForm.close();
+  }).catch(err => {
+    alert('Что-то пошло не так. Ошибка: ' + err);
   })
-  
 })
 
 const formValidators = {}
