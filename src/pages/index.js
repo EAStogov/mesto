@@ -51,7 +51,7 @@ Promise.all([api.getInitialCards(), api.getProfileInfo()])
       cardSection.addItem(res);
       popupWithAddForm.close();
     }).catch(err => {
-      alert('Что-то пошло не так. Ошибка: ' + err);
+      alert('Не удалось создать новую карточку. Ошибка: ' + err + 'Пожалуйста, попробуйте позже.');
     })
   });
 
@@ -68,7 +68,7 @@ const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
       userInfo.setUserInfo(res);
       popupWithEditForm.close();
   }).catch(err => {
-    alert('Что-то пошло не так. Ошибка: ' + err);
+    alert('Не удалось сохранить изменения. Ошибка: ' + err + 'Пожалуйста, попробуйте позже.');
   })
 });
 
@@ -77,7 +77,7 @@ const popupWithAvatarForm = new PopupWithForm('#avatar-popup', (inputValues) => 
     userInfo.setUserInfo(res);
     popupWithAvatarForm.close();
   }).catch(err => {
-    alert('Что-то пошло не так. Ошибка: ' + err);
+    alert('Не удалось сохранить изображение. Ошибка: ' + err + 'Пожалуйста, попробуйте позже.');
   })
 })
 

@@ -33,7 +33,7 @@ export default class PopupWithConfirm extends Popup {
       this.close();
       this._item.remove();
     }).catch(err => {
-      alert(err);
+      alert('Не удалось удалить карточку. Ошибка: ' + err + 'Пожалуйста, попробуйте позже.');
     });
   }
 }
