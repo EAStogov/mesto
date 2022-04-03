@@ -20,6 +20,12 @@ export default class PopupWithForm extends Popup {
     return this._inputValues;
   }
 
+  setInputValues(data) {
+    this._inputs.forEach(input => {
+      input.value = data[input.name];
+    })
+  }
+
   _submitChanges(evt) {
     evt.preventDefault();
     this._submitButton.textContent = 'Сохранение...';
@@ -40,9 +46,5 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._form.reset();
     this._submitButton.textContent = this._submitButtonText;
-  }
-
-  open() {
-    super.open();
   }
 }

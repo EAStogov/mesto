@@ -59,15 +59,15 @@ api.getInitialCards().then(rsl => {
 })
 
 const popupWithEditForm = new PopupWithForm('#edit-popup', (inputValues) => {
-  api.editProfile(inputValues.name, inputValues.description).then((res) => {
-      userInfo.setUserInfo({name: res.name, description: res.about});
+  api.editProfile(inputValues).then((res) => {
+      userInfo.setUserInfo(res);
       popupWithEditForm.close();
   })
 });
 
 const popupWithAvatarForm = new PopupWithForm('#avatar-popup', (inputValues) => {
   api.editAvatar(inputValues.avatar).then(res => {
-    constant.avatar.style.background = `url(${res.avatar})`;
+    userInfo.setUserInfo(res);
     popupWithAvatarForm.close();
   })
   
@@ -88,9 +88,7 @@ const enableValidation = (config) => {
 enableValidation(constant.validationArgs);
 
 constant.editProfileButton.addEventListener('click', () => {
-  const userData = userInfo.getUserInfo();
-  constant.inputName.value = userData.name;
-  constant.inputDesc.value = userData.desc;
+  popupWithEditForm.setInputValues(userInfo.getUserInfo());
   formValidators['popup__form-edit'].resetValidation();
   popupWithEditForm.open();
 });

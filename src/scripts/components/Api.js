@@ -35,19 +35,19 @@ export default class API {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.place,
+        name: data.about,
         link: data.link
       })
     }));
   }
 
-  editProfile(name, about) {
+  editProfile(data) {
     return this._makeRequest(fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
-        about: about
+        name: data.name,
+        about: data.about
       })
     }));
   }
